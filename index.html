@@ -3,126 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>D'laCosta</title>
+  <title>D'laCosta - Inicio</title>
   <meta name="description" content="Productos alimenticios con estándares de exportación." />
-  <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #111111;
-      --chip: rgba(127,127,127,0.15);
-      --chip-active: rgba(127,127,127,0.25);
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #000000;
-        --fg: #f5f5f5;
-        --chip: rgba(255,255,255,0.08);
-        --chip-active: rgba(255,255,255,0.18);
-      }
-    }
-
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
-    }
-
-    .wrap {
-      min-height: 100%;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 24px;
-    }
-
-    .logo {
-      max-width: 320px;
-      width: 60vw;
-      height: auto;
-      display: block;
-      margin: 0 auto 24px;
-    }
-
-    /* Por defecto mostramos el logo claro y ocultamos el oscuro */
-    .logo-light { display: block; }
-    .logo-dark  { display: none; }
-
-    /* En modo oscuro, invertimos */
-    @media (prefers-color-scheme: dark) {
-      .logo-light { display: none; }
-      .logo-dark  { display: block; }
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font-weight: 700;
-      line-height: 1.1;
-    }
-    p {
-      margin: 0 0 18px;
-      opacity: .9;
-    }
-    .cta {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 10px 16px;
-      border: 1px solid currentColor;
-      border-radius: 10px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .lang-switch {
-      position: fixed;
-      top: 12px; right: 12px;
-      display: inline-flex; gap: 8px;
-      background: var(--chip);
-      backdrop-filter: blur(6px);
-      border-radius: 999px;
-      padding: 6px 10px;
-      align-items: center;
-      font-size: 14px;
-      user-select: none;
-    }
-    .lang-switch button {
-      border: 0; background: transparent; color: var(--fg);
-      cursor: pointer; padding: 6px 10px; border-radius: 999px;
-    }
-    .lang-switch button.active {
-      background: var(--chip-active);
-      font-weight: 600;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-      font-size: 12px;
-      opacity: .7;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
   <!-- Selector de idioma -->
   <div class="lang-switch" aria-label="language switch">
     <button id="btn-es" class="active">ES</button>
     <button id="btn-en">EN</button>
   </div>
 
-  <main class="wrap">
-    <div>
-      <!-- Logos: sube ambos archivos con estos nombres -->
-      <img class="logo logo-light" src="logo_light.png" alt="D'laCosta (Light)" />
-      <img class="logo logo-dark"  src="logo_dark.png"  alt="D'laCosta (Dark)" />
+  <!-- Hero principal -->
+  <header class="hero">
+    <!-- Logos adaptados al tema -->
+    <img class="logo logo-light" src="logo_light.png" alt="D'laCosta (Light)" />
+    <img class="logo logo-dark"  src="logo_dark.png"  alt="D'laCosta (Dark)" />
 
-      <h1 data-i18n="headline">Calidad que se siente desde el origen</h1>
-      <p data-i18n="tagline">Productos alimenticios con estándares de exportación.</p>
-      <a class="cta" href="mailto:info@dlacosta.com" data-i18n="cta">Contáctanos</a>
+    <h1 data-i18n="headline">Productos Agrícolas</h1>
+
+    <nav class="nav-buttons">
+      <a href="#quienes" data-i18n="nav-about">Quiénes Somos</a>
+      <a href="#productos" data-i18n="nav-products">Productos y Servicios</a>
+      <a href="#galeria" data-i18n="nav-gallery">Galería</a>
+      <a href="#contacto" data-i18n="nav-contact">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Sección Quiénes Somos -->
+  <section id="quienes" class="about">
+    <div class="text">
+      <p data-i18n="about-1">
+        Somos una empresa agroindustrial ecuatoriana dedicada a procesar alimentos bajo estrictos estándares de calidad, asegurando productos de excelencia.
+      </p>
+      <p data-i18n="about-2">
+        Nuestro equipo, conformado por profesionales altamente capacitados, supervisa meticulosamente cada etapa del proceso de producción.
+      </p>
+      <p data-i18n="about-3">
+        Nos comprometemos plenamente con la satisfacción de nuestros clientes, un logro que nos llena de orgullo.
+      </p>
     </div>
-  </main>
+    <div class="image">
+      <img src="planta.jpg" alt="Planta de producción D'laCosta" />
+    </div>
+  </section>
+
+  <!-- Sección Productos -->
+  <section id="productos" class="products">
+    <h2 data-i18n="products-title">Productos</h2>
+    <!-- Aquí después listaremos productos -->
+  </section>
+
+  <!-- Sección Galería -->
+  <section id="galeria" class="gallery">
+    <h2 data-i18n="gallery-title">Galería</h2>
+    <!-- Aquí después pondremos imágenes -->
+  </section>
+
+  <!-- Sección Contacto -->
+  <section id="contacto" class="contact">
+    <h2 data-i18n="contact-title">Contacto</h2>
+    <p>Email: <a href="mailto:info@dlacosta.com">info@dlacosta.com</a></p>
+  </section>
 
   <footer>
     <span data-i18n="footer">© D'laCosta. Todos los derechos reservados.</span>
