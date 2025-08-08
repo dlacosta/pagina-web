@@ -29,29 +29,29 @@ body{background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,
 .lang-switch .active{background:var(--chip-a);font-weight:600}
 
 /* Topbar */
+/* Topbar sobre la imagen, transparente al inicio */
 .topbar{
-  position:sticky; top:0; z-index:15;
+  position:absolute;  /* antes: sticky */
+  top:0; left:0; right:0;
+  z-index:15;
   display:flex; align-items:center; justify-content:space-between;
   padding:10px 16px; gap:12px;
-  backdrop-filter: blur(8px);
-  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  background: transparent;          /* transparente */
+  border-bottom: none;
+  backdrop-filter: blur(0);          /* sin blur al inicio */
+}
+.topbar.scrolled{
+  position:sticky;                   /* al hacer scroll se fija */
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
   border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  backdrop-filter: blur(8px);
 }
-.topbar.scrolled{ background: color-mix(in oklab, var(--bg) 92%, transparent); }
-
-.brand{ display:flex; align-items:center; gap:8px; text-decoration:none }
-.brand .logo{ height:36px; width:auto }
-
-.menu-toggle{ display:none; border:1px solid currentColor; background:transparent; color:inherit; border-radius:8px; padding:8px 10px }
-.nav{ display:flex; gap:14px }
-.nav a{
-  text-decoration:none; color:inherit; padding:8px 10px; border-radius:8px;
-}
-.nav a:hover{ background:var(--chip-a) }
 
 /* Hero */
 .hero{
-  min-height:58vh; display:grid; place-items:center; text-align:center; padding:48px 16px;
+  min-height:58vh;
+  display:flex; align-items:center;
+  padding:80px 16px 48px; /* espacio para el topbar arriba */
   background:
     linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.25)),
     url('fondo_banano.jpg') center/cover no-repeat;
@@ -61,8 +61,25 @@ body{background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,
     linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.12)),
     url('fondo_banano.jpg') center/cover no-repeat; }
 }
-.hero h1{ color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.35); font-size:clamp(28px,5vw,56px); margin:0 0 8px }
-.hero p{ color:#fff; opacity:.95; margin:0 }
+
+/* bloque izquierdo del hero */
+.hero-left{
+  width: min(92%, 1080px);
+  margin: 0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start; /* IZQUIERDA */
+  gap:10px;
+}
+.brand-hero{ max-width: 280px; height:auto; }
+
+/* título debajo del logo */
+.hero h1{
+  margin: 4px 0 0;
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.35);
+  font-size: clamp(28px, 5vw, 56px);
+}
 
 /* About */
 .about{ display:grid; grid-template-columns:1.15fr .85fr; gap:24px; padding:48px 20px }
