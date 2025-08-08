@@ -60,6 +60,17 @@
       border-radius: 10px;
       text-decoration: none; color: inherit;
     }
+    /* Ocultar logo oscuro por defecto */
+    .logo-dark {
+      display: none;
+    }
+
+    /* Si el usuario está en modo oscuro */
+    @media (prefers-color-scheme: dark) {
+      .logo-light { display: none; }
+      .logo-dark { display: block; }
+    }
+
   </style>
 </head>
 <body>
@@ -71,7 +82,10 @@
 
   <main class="wrap">
     <div>
-      <img class="logo" src="logo.png" alt="D'laCosta" />
+      <!-- Logo claro -->
+      <img class="logo logo-light" src="logo_light.png" alt="D'laCosta (Light)" />
+      <!-- Logo oscuro -->
+      <img class="logo logo-dark" src="logo_dark.png" alt="D'laCosta (Dark)" />
       <h1 data-i18n="headline">Calidad que se siente desde el origen</h1>
       <p data-i18n="tagline">Productos alimenticios con estándares de exportación.</p>
       <a class="cta" href="#" data-i18n="cta">Contáctanos</a>
