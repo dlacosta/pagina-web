@@ -15,25 +15,34 @@
     <button id="btn-en">EN</button>
   </div>
 
-  <!-- Hero principal -->
-  <header class="hero">
-    <!-- Logos adaptados al tema -->
-    <img class="logo logo-light" src="logo_light.png" alt="D'laCosta (Light)" />
-    <img class="logo logo-dark"  src="logo_dark.png"  alt="D'laCosta (Dark)" />
+  <!-- NAV SUPERIOR -->
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#">
+      <img class="logo logo-light" src="logo_light.png" alt="D'laCosta (Light)" />
+      <img class="logo logo-dark"  src="logo_dark.png"  alt="D'laCosta (Dark)" />
+    </a>
 
-    <h1 data-i18n="headline">Productos Agrícolas</h1>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
 
-    <nav class="nav-buttons">
-      <a href="#quienes" data-i18n="nav-about">Quiénes Somos</a>
+    <nav class="nav" id="nav">
+      <a href="#quienes"   data-i18n="nav-about">Quiénes Somos</a>
       <a href="#productos" data-i18n="nav-products">Productos y Servicios</a>
-      <a href="#galeria" data-i18n="nav-gallery">Galería</a>
-      <a href="#contacto" data-i18n="nav-contact">Contacto</a>
+      <a href="#galeria"   data-i18n="nav-gallery">Galería</a>
+      <a href="#contacto"  data-i18n="nav-contact">Contacto</a>
     </nav>
   </header>
 
-  <!-- Sección Quiénes Somos -->
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 data-i18n="headline">Productos Agrícolas</h1>
+      <p data-i18n="hero-tag">Calidad que se siente desde el origen.</p>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS -->
   <section id="quienes" class="about">
-    <div class="text">
+    <div class="about-text">
       <p data-i18n="about-1">
         Somos una empresa agroindustrial ecuatoriana dedicada a procesar alimentos bajo estrictos estándares de calidad, asegurando productos de excelencia.
       </p>
@@ -44,25 +53,23 @@
         Nos comprometemos plenamente con la satisfacción de nuestros clientes, un logro que nos llena de orgullo.
       </p>
     </div>
-    <div class="image">
+    <div class="about-image">
       <img src="planta.jpg" alt="Planta de producción D'laCosta" />
     </div>
   </section>
 
-  <!-- Sección Productos -->
-  <section id="productos" class="products">
+  <!-- PRODUCTOS -->
+  <section id="productos" class="section">
     <h2 data-i18n="products-title">Productos</h2>
-    <!-- Aquí después listaremos productos -->
   </section>
 
-  <!-- Sección Galería -->
-  <section id="galeria" class="gallery">
+  <!-- GALERÍA -->
+  <section id="galeria" class="section">
     <h2 data-i18n="gallery-title">Galería</h2>
-    <!-- Aquí después pondremos imágenes -->
   </section>
 
-  <!-- Sección Contacto -->
-  <section id="contacto" class="contact">
+  <!-- CONTACTO -->
+  <section id="contacto" class="section">
     <h2 data-i18n="contact-title">Contacto</h2>
     <p>Email: <a href="mailto:info@dlacosta.com">info@dlacosta.com</a></p>
   </section>
@@ -71,41 +78,34 @@
     <span data-i18n="footer">© D'laCosta. Todos los derechos reservados.</span>
   </footer>
 
-  <!-- Traducciones -->
   <script src="translations.js"></script>
   <script>
+    // i18n (igual a lo que ya usábamos)
     const saved = localStorage.getItem('lang');
-    let lang = saved || ((navigator.language || navigator.userLanguage || 'es').toLowerCase().startsWith('en') ? 'en' : 'es');
-
+    let lang = saved || ((navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es');
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
 
-    function setActive(current) {
-      btnEs.classList.toggle('active', current === 'es');
-      btnEn.classList.toggle('active', current === 'en');
-      document.documentElement.setAttribute('lang', current);
-    }
-
-    function applyTranslations(current) {
+    function setActive(current){ btnEs.classList.toggle('active', current==='es'); btnEn.classList.toggle('active', current==='en'); document.documentElement.setAttribute('lang', current); }
+    function applyTranslations(current){
       const dict = (window.TRANSLATIONS && window.TRANSLATIONS[current]) || window.TRANSLATIONS.es || {};
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (dict[key]) el.textContent = dict[key];
-      });
+      document.querySelectorAll('[data-i18n]').forEach(el => { const k=el.getAttribute('data-i18n'); if(dict[k]) el.textContent=dict[k]; });
     }
+    function switchLang(to){ lang=to; localStorage.setItem('lang',to); setActive(to); applyTranslations(to); }
+    btnEs.addEventListener('click',()=>switchLang('es'));
+    btnEn.addEventListener('click',()=>switchLang('en'));
+    setActive(lang); applyTranslations(lang);
 
-    function switchLang(to) {
-      lang = to;
-      localStorage.setItem('lang', to);
-      setActive(to);
-      applyTranslations(to);
-    }
+    // Menú móvil
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click',()=> nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
-    btnEs.addEventListener('click', () => switchLang('es'));
-    btnEn.addEventListener('click', () => switchLang('en'));
-
-    setActive(lang);
-    applyTranslations(lang);
+    // Topbar sólida al hacer scroll
+    const topbar = document.getElementById('topbar');
+    const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 10);
+    onScroll(); window.addEventListener('scroll', onScroll);
   </script>
 </body>
 </html>
