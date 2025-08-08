@@ -15,34 +15,26 @@
     <button id="btn-en">EN</button>
   </div>
 
-  <!-- NAV SUPERIOR -->
-<header class="topbar" id="topbar">
-  <a class="brand" href="#">
-    <img class="logo logo-light" src="logo_light.png" alt="D'laCosta (Light)" />
-    <img class="logo logo-dark"  src="logo_dark.png"  alt="D'laCosta (Dark)" />
-  </a>
+  <!-- NAV SUPERIOR (sin logo) -->
+  <header class="topbar" id="topbar">
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#quienes"   data-i18n="nav-about">Quiénes Somos</a>
+      <a href="#productos" data-i18n="nav-products">Productos y Servicios</a>
+      <a href="#entre"     data-i18n="nav-entre">Entre Chifles y Plátanos</a>
+      <a href="#galeria"   data-i18n="nav-gallery">Galería</a>
+      <a href="#contacto"  data-i18n="nav-contact">Contacto</a>
+    </nav>
+  </header>
 
-  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
-
-  <nav class="nav" id="nav">
-    <a href="#quienes"   data-i18n="nav-about">Quiénes Somos</a>
-    <a href="#productos" data-i18n="nav-products">Productos y Servicios</a>
-    <a href="#entre"     data-i18n="nav-entre">Entre Chifles y Plátanos</a>
-    <a href="#galeria"   data-i18n="nav-gallery">Galería</a>
-    <a href="#contacto"  data-i18n="nav-contact">Contacto</a>
-  </nav>
-</header>
-
-  <!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <!-- logo sobre la imagen -->
-    <img class="brand-hero logo-light" src="logo_light.png" alt="D'laCosta (Light)" />
-    <img class="brand-hero logo-dark"  src="logo_dark.png"  alt="D'laCosta (Dark)" />
-    <!-- título debajo del logo -->
-    <h1 data-i18n="headline">Productos Agrícolas</h1>
-  </div>
-</section>
+  <!-- HERO (logo izq + título debajo) -->
+  <section class="hero">
+    <div class="hero-left">
+      <img class="brand-hero logo-light" src="logo_light.png" alt="D'laCosta (Light)" />
+      <img class="brand-hero logo-dark"  src="logo_dark.png"  alt="D'laCosta (Dark)" />
+      <h1 data-i18n="headline">Productos Agrícolas</h1>
+    </div>
+  </section>
 
   <!-- QUIÉNES SOMOS -->
   <section id="quienes" class="about">
@@ -61,6 +53,9 @@
       <img src="planta.jpg" alt="Planta de producción D'laCosta" />
     </div>
   </section>
+
+  <!-- ENTRE CHIFLES Y PLÁTANOS (placeholder) -->
+  <section id="entre" class="section" hidden></section>
 
   <!-- PRODUCTOS -->
   <section id="productos" class="section">
@@ -82,31 +77,37 @@
     <span data-i18n="footer">© D'laCosta. Todos los derechos reservados.</span>
   </footer>
 
+  <!-- Traducciones -->
   <script src="translations.js"></script>
   <script>
-    // i18n (igual a lo que ya usábamos)
+    // i18n
     const saved = localStorage.getItem('lang');
     let lang = saved || ((navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es');
     const btnEs = document.getElementById('btn-es');
     const btnEn = document.getElementById('btn-en');
 
-    function setActive(current){ btnEs.classList.toggle('active', current==='es'); btnEn.classList.toggle('active', current==='en'); document.documentElement.setAttribute('lang', current); }
+    function setActive(current){
+      btnEs.classList.toggle('active', current==='es');
+      btnEn.classList.toggle('active', current==='en');
+      document.documentElement.setAttribute('lang', current);
+    }
     function applyTranslations(current){
       const dict = (window.TRANSLATIONS && window.TRANSLATIONS[current]) || window.TRANSLATIONS.es || {};
-      document.querySelectorAll('[data-i18n]').forEach(el => { const k=el.getAttribute('data-i18n'); if(dict[k]) el.textContent=dict[k]; });
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k = el.getAttribute('data-i18n');
+        if(dict[k]) el.textContent = dict[k];
+      });
     }
     function switchLang(to){ lang=to; localStorage.setItem('lang',to); setActive(to); applyTranslations(to); }
-    btnEs.addEventListener('click',()=>switchLang('es'));
-    btnEn.addEventListener('click',()=>switchLang('en'));
+    btnEs.addEventListener('click', ()=>switchLang('es'));
+    btnEn.addEventListener('click', ()=>switchLang('en'));
     setActive(lang); applyTranslations(lang);
 
-    // Menú móvil
+    // Menú móvil + topbar scrolled
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
     menuToggle.addEventListener('click',()=> nav.classList.toggle('open'));
     nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-
-    // Topbar sólida al hacer scroll
     const topbar = document.getElementById('topbar');
     const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 10);
     onScroll(); window.addEventListener('scroll', onScroll);
