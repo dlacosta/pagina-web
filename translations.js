@@ -1,7 +1,7 @@
-// translations.js
 window.TRANSLATIONS = {
   es: {
     headline: "Productos Agrícolas",
+    hero-tag: "Calidad que se siente desde el origen.",
     nav-about: "Quiénes Somos",
     nav-products: "Productos y Servicios",
     nav-gallery: "Galería",
@@ -16,13 +16,14 @@ window.TRANSLATIONS = {
   },
   en: {
     headline: "Agricultural Products",
+    hero-tag: "Quality you can feel from the source.",
     nav-about: "About Us",
     nav-products: "Products & Services",
     nav-gallery: "Gallery",
     nav-contact: "Contact",
-    about-1: "We are an Ecuadorian agro-industrial company dedicated to processing food under strict quality standards, ensuring products of excellence.",
-    about-2: "Our team, made up of highly trained professionals, meticulously supervises each stage of the production process.",
-    about-3: "We are fully committed to the satisfaction of our customers, an achievement that fills us with pride.",
+    about-1: "We are an Ecuadorian agro‑industrial company dedicated to processing food under strict quality standards, ensuring products of excellence.",
+    about-2: "Our team, made up of highly trained professionals, meticulously supervises every stage of the production process.",
+    about-3: "We are fully committed to our customers’ satisfaction, an achievement that makes us proud.",
     products-title: "Products",
     gallery-title: "Gallery",
     contact-title: "Contact",
