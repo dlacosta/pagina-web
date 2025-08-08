@@ -11,9 +11,10 @@
 @media (prefers-color-scheme: light){
   :root{ --bg:var(--bg-light); --fg:var(--fg-light); --chip:var(--chip-l); --chip-a:var(--chip-a-l); }
 }
+
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;}
+body{background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif}
 
 /* Logo adaptativo */
 .logo-light{display:block} .logo-dark{display:none}
@@ -23,62 +24,52 @@ body{background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,
 .lang-switch{
   position:fixed; top:12px; right:12px; z-index:20;
   display:inline-flex; gap:8px; background:var(--chip);
-  padding:6px 10px; border-radius:999px; font-size:14px; backdrop-filter:blur(6px);
+  padding:6px 10px; border-radius:999px; font-size:14px; backdrop-filter:blur(6px)
 }
 .lang-switch button{border:0;background:transparent;color:var(--fg);cursor:pointer;padding:6px 10px;border-radius:999px}
 .lang-switch .active{background:var(--chip-a);font-weight:600}
 
-/* Topbar */
-/* Topbar sobre la imagen, transparente al inicio */
+/* Topbar SOBRE el hero (transparente al inicio) */
 .topbar{
-  position:absolute;  /* antes: sticky */
-  top:0; left:0; right:0;
-  z-index:15;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:10px 16px; gap:12px;
-  background: transparent;          /* transparente */
-  border-bottom: none;
-  backdrop-filter: blur(0);          /* sin blur al inicio */
+  position:absolute; top:0; left:0; right:0; z-index:15;
+  display:flex; align-items:center; justify-content:flex-end;
+  gap:12px; padding:10px 16px;
+  background:transparent; border-bottom:none; backdrop-filter:none
 }
 .topbar.scrolled{
-  position:sticky;                   /* al hacer scroll se fija */
+  position:sticky;
   background: color-mix(in oklab, var(--bg) 92%, transparent);
   border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px)
 }
+.menu-toggle{ display:none; border:1px solid currentColor; background:transparent; color:inherit; border-radius:8px; padding:8px 10px }
+.nav{ display:flex; gap:14px }
+.nav a{ text-decoration:none; color:inherit; padding:8px 10px; border-radius:8px }
+.nav a:hover{ background:var(--chip-a) }
 
-/* Hero */
+/* HERO (logo izq + título debajo) */
 .hero{
-  min-height:58vh;
-  display:flex; align-items:center;
-  padding:80px 16px 48px; /* espacio para el topbar arriba */
+  min-height:68vh; display:flex; align-items:center;
+  padding:96px 16px 48px; /* espacio topbar */
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.25)),
-    url('fondo_banano.jpg') center/cover no-repeat;
+    linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.10) 100%),
+    url('fondo_banano.jpg') center/cover no-repeat
 }
 @media (prefers-color-scheme: light){
   .hero{ background:
-    linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.12)),
-    url('fondo_banano.jpg') center/cover no-repeat; }
+    linear-gradient(90deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.18) 45%, rgba(0,0,0,.08) 100%),
+    url('fondo_banano.jpg') center/cover no-repeat
+  }
 }
-
-/* bloque izquierdo del hero */
 .hero-left{
-  width: min(92%, 1080px);
-  margin: 0 auto;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start; /* IZQUIERDA */
-  gap:10px;
+  width:min(1100px,92%); margin:0 auto;
+  display:flex; flex-direction:column; align-items:flex-start; gap:10px
 }
-.brand-hero{ max-width: 280px; height:auto; }
-
-/* título debajo del logo */
+.brand-hero{ height:clamp(56px,8vw,110px); width:auto }
 .hero h1{
-  margin: 4px 0 0;
-  color:#fff;
+  margin:4px 0 0; color:#fff; font-weight:800;
   text-shadow:0 2px 10px rgba(0,0,0,.35);
-  font-size: clamp(28px, 5vw, 56px);
+  font-size:clamp(28px,4.5vw,56px)
 }
 
 /* About */
@@ -96,9 +87,12 @@ footer{ text-align:center; padding:28px 16px; opacity:.7 }
 /* Responsive */
 @media (max-width: 900px){
   .menu-toggle{ display:block }
-  .nav{ position:fixed; right:12px; top:54px; display:none; flex-direction:column; gap:8px;
-        padding:10px; background:var(--bg); border:1px solid color-mix(in oklab, var(--fg) 12%, transparent);
-        border-radius:12px; z-index:19 }
+  .nav{
+    position:fixed; right:12px; top:54px; display:none; flex-direction:column; gap:8px;
+    padding:10px; background:var(--bg);
+    border:1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+    border-radius:12px; z-index:19
+  }
   .nav.open{ display:flex }
   .about{ grid-template-columns:1fr }
 }
