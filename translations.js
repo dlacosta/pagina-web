@@ -1,15 +1,31 @@
 // translations.js
 window.TRANSLATIONS = {
   es: {
-    headline: "Calidad que se siente desde el origen",
-    tagline: "Productos alimenticios con estándares de exportación.",
-    cta: "Contáctanos",
-    footer: "© D'laCosta. Todos los derechos reservados.",
+    headline: "Productos Agrícolas",
+    nav-about: "Quiénes Somos",
+    nav-products: "Productos y Servicios",
+    nav-gallery: "Galería",
+    nav-contact: "Contacto",
+    about-1: "Somos una empresa agroindustrial ecuatoriana dedicada a procesar alimentos bajo estrictos estándares de calidad, asegurando productos de excelencia.",
+    about-2: "Nuestro equipo, conformado por profesionales altamente capacitados, supervisa meticulosamente cada etapa del proceso de producción.",
+    about-3: "Nos comprometemos plenamente con la satisfacción de nuestros clientes, un logro que nos llena de orgullo.",
+    products-title: "Productos",
+    gallery-title: "Galería",
+    contact-title: "Contacto",
+    footer: "© D'laCosta. Todos los derechos reservados."
   },
   en: {
-    headline: "Quality you can feel from the source",
-    tagline: "Food products with export-grade standards.",
-    cta: "Contact us",
-    footer: "© D'laCosta. All rights reserved.",
-  },
+    headline: "Agricultural Products",
+    nav-about: "About Us",
+    nav-products: "Products & Services",
+    nav-gallery: "Gallery",
+    nav-contact: "Contact",
+    about-1: "We are an Ecuadorian agro-industrial company dedicated to processing food under strict quality standards, ensuring products of excellence.",
+    about-2: "Our team, made up of highly trained professionals, meticulously supervises each stage of the production process.",
+    about-3: "We are fully committed to the satisfaction of our customers, an achievement that fills us with pride.",
+    products-title: "Products",
+    gallery-title: "Gallery",
+    contact-title: "Contact",
+    footer: "© D'laCosta. All rights reserved."
+  }
 };
